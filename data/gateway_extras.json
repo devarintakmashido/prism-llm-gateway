@@ -1,0 +1,24 @@
+{
+  "_comment": "Optional providers, merged into gateway_config.sample.json only when an API key is set (PRISM_OPENROUTER_API_KEY). Without a key this file is ignored. Models are appended to the END of the named alias chains, so they serve traffic only after alpha and beta have failed. model_ids maps Prism's logical names to the provider's own model ids. probe=false: the health prober would spend real, billed requests every 3 s.",
+  "providers": [
+    {
+      "name": "openrouter",
+      "base_url": "https://openrouter.ai/api/v1",
+      "api_key": "",
+      "probe": false,
+      "first_byte_timeout_ms": 20000,
+      "model_ids": {
+        "openrouter-small": "openai/gpt-4.1-nano",
+        "openrouter-large": "openai/gpt-4.1-mini"
+      }
+    }
+  ],
+  "append_fallbacks": {
+    "fast": [
+      "openrouter-small"
+    ],
+    "smart": [
+      "openrouter-large"
+    ]
+  }
+}

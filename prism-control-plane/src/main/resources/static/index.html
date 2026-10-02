@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prism Ops Console</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --panel: #ffffff; --text: #1d2330; --muted: #677084; --line: #e3e6eb;
+    --accent: #4f46e5; --ok: #15803d; --warn: #b45309; --bad: #b91c1c; --chip: #eef0f4;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0f1218; --panel: #171b23; --text: #e6e9ef; --muted: #939bab; --line: #2a303b;
+            --accent: #8b87ff; --ok: #4ade80; --warn: #fbbf24; --bad: #f87171; --chip: #232833; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px/1.45 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: var(--bg); color: var(--text); }
+  header { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between;
+           padding: 14px 20px; border-bottom: 1px solid var(--line); background: var(--panel); position: sticky; top: 0; z-index: 2; }
+  header h1 { font-size: 17px; margin: 0; letter-spacing: .2px; }
+  header h1 span { color: var(--muted); font-weight: 400; }
+  .controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  input, button, select { font: inherit; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--text); }
+  button { cursor: pointer; } button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  main { padding: 16px 20px 40px; display: grid; gap: 16px; max-width: 1400px; margin: 0 auto; }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .kpi, section { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+  .kpi { padding: 12px 14px; } .kpi .label { color: var(--muted); font-size: 12px; } .kpi .value { font-size: 22px; font-weight: 600; margin-top: 2px; }
+  .kpi .sub { color: var(--muted); font-size: 12px; }
+  section { padding: 12px 14px; overflow: hidden; }
+  section h2 { font-size: 14px; margin: 0 0 10px; display: flex; justify-content: space-between; align-items: baseline; }
+  section h2 small { color: var(--muted); font-weight: 400; }
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 16px; }
+  .scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th { color: var(--muted); font-weight: 500; font-size: 12px; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.reason { white-space: normal; min-width: 260px; max-width: 420px; color: var(--muted); font-size: 12px; }
+  .mono { font-family: var(--mono); font-size: 12px; }
+  .chip { display: inline-block; padding: 1px 8px; border-radius: 999px; background: var(--chip); font-size: 12px; }
+  .ok { color: var(--ok); } .warn { color: var(--warn); } .bad { color: var(--bad); }
+  .chip.ok { background: color-mix(in srgb, var(--ok) 15%, transparent); }
+  .chip.warn { background: color-mix(in srgb, var(--warn) 15%, transparent); }
+  .chip.bad { background: color-mix(in srgb, var(--bad) 15%, transparent); }
+  .bar { height: 6px; background: var(--chip); border-radius: 3px; min-width: 90px; overflow: hidden; }
+  .bar > div { height: 100%; background: var(--accent); }
+  .providers { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+  .provider { border: 1px solid var(--line); border-radius: 8px; padding: 10px; }
+  .provider .name { font-weight: 600; display: flex; justify-content: space-between; }
+  .provider .meta { color: var(--muted); font-size: 12px; margin-top: 4px; }
+  #error { display: none; background: color-mix(in srgb, var(--bad) 12%, var(--panel)); border: 1px solid var(--bad); color: var(--text); padding: 10px 14px; border-radius: 8px; }
+  @media (max-width: 520px) { .grid2 { grid-template-columns: 1fr; } header { padding: 12px 16px; } main { padding: 12px 16px 32px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Prism <span>ops console</span></h1>
+  <div class="controls">
+    <input id="token" type="password" placeholder="admin token" autocomplete="off" size="22">
+    <button class="primary" id="save">Connect</button>
+    <label><input type="checkbox" id="auto" checked> auto-refresh</label>
+    <span id="updated" class="chip">not connected</span>
+  </div>
+</header>
+<main>
+  <div id="error"></div>
+  <div class="kpis" id="kpis"></div>
+  <section>
+    <h2>Provider health <small id="instances"></small></h2>
+    <div class="providers" id="providers"></div>
+  </section>
+  <div class="grid2">
+    <section>
+      <h2>Usage by key <small>this month</small></h2>
+      <div class="scroll"><table id="usage"></table></div>
+    </section>
+    <section>
+      <h2>Semantic cache <small>this month</small></h2>
+      <div class="scroll"><table id="cache"></table></div>
+    </section>
+  </div>
+  <section>
+    <h2>Recent requests <small>newest first &middot;
+      <select id="filter"><option value="">all statuses</option><option>ok</option><option>cache_hit</option>
+        <option>rejected_rate_limit</option><option>rejected_budget</option><option>rejected_allowlist</option>
+        <option>rejected_auth</option><option>upstream_error</option><option>stream_error</option></select></small></h2>
+    <div class="scroll"><table id="logs"></table></div>
+  </section>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const store = { get(k) { try { return sessionStorage.getItem(k); } catch { return null; } },
+                set(k, v) { try { sessionStorage.setItem(k, v); } catch {} } };
+$('token').value = store.get('prism-admin-token') || '';
+$('save').onclick = () => { store.set('prism-admin-token', $('token').value.trim()); refresh(); };
+$('token').onkeydown = e => { if (e.key === 'Enter') $('save').click(); };
+$('filter').onchange = refresh;
+
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const usd = v => v == null ? '–' : '$' + Number(v).toFixed(Number(v) !== 0 && Math.abs(v) < 0.01 ? 6 : 2);
+const pct = v => v == null ? '–' : (v * 100).toFixed(0) + '%';
+const num = v => v == null ? '–' : Number(v).toLocaleString();
+const ms = v => v == null ? '–' : Math.round(v) + ' ms';
+const stateClass = s => ({HEALTHY: 'ok', DEGRADED: 'warn', UNHEALTHY: 'bad'})[s] || '';
+const statusClass = s => s === 'ok' || s === 'cache_hit' ? 'ok' : s.startsWith('rejected') ? 'warn' : 'bad';
+
+async function api(path) {
+  const r = await fetch(path, { headers: { Authorization: 'Bearer ' + $('token').value.trim() } });
+  if (r.status === 401) throw new Error('Admin token rejected. Enter the admin token (PRISM_ADMIN_TOKEN) and press Connect.');
+  if (!r.ok) throw new Error(path + ' returned ' + r.status);
+  return r.json();
+}
+
+function renderKpis(o) {
+  const tiles = [
+    ['Requests (24h)', num(o.requests), `${num(o.served)} served · ${num(o.rejected)} rejected`],
+    ['Spend (24h)', usd(o.cost_usd), 'from provider-reported usage'],
+    ['Cache hit rate', pct(o.cache_hit_rate), `${num(o.cache_hits)} hits · ${num(o.cache_misses)} misses`],
+    ['Fallbacks', num(o.fallbacks), (o.by_provider || []).map(p => `${p.provider}: ${p.requests}`).join(' · ') || '–'],
+    ['Latency p50 / p95', `${ms(o.latency_p50_ms)} / ${ms(o.latency_p95_ms)}`, 'non-streaming, end to end'],
+    ['Gateway overhead', `${ms(o.overhead_p50_ms)} / ${ms(o.overhead_p95_ms)}`, 'p50 / p95, excl. provider time'],
+    ['Auto routing', (o.auto_routing || []).map(r => `${r.tier} ${r.requests}`).join(' · ') || '–', 'tier chosen by the router'],
+  ];
+  $('kpis').innerHTML = tiles.map(([l, v, s]) =>
+    `<div class="kpi"><div class="label">${l}</div><div class="value">${v}</div><div class="sub">${esc(s)}</div></div>`).join('');
+}
+
+function renderProviders(h) {
+  $('instances').textContent = `${h.gateway_instances.length} gateway instance(s): ${h.gateway_instances.join(', ') || 'none reporting'}`;
+  $('providers').innerHTML = h.providers.map(p => {
+    const worst = p.instances.reduce((a, b) => (b.errorRate > a.errorRate ? b : a), p.instances[0]);
+    return `<div class="provider"><div class="name">${esc(p.provider)} <span class="chip ${stateClass(p.state)}">${p.state.toLowerCase()}</span></div>
+      <div class="meta">error rate ${pct(worst.errorRate)} · p95 ${ms(worst.p95Ms)} · ${worst.samples} samples/60s</div>
+      <div class="meta">${worst.lastError ? 'last error: ' + esc(worst.lastError).slice(0, 90) : 'no recent errors'}</div></div>`;
+  }).join('') || '<div class="meta">No gateway has reported yet.</div>';
+}
+
+function renderUsage(u) {
+  $('usage').innerHTML = `<tr><th>team</th><th>key</th><th class="num">requests</th><th class="num">rejected</th>
+    <th class="num">tokens in/out</th><th class="num">spend</th><th>budget used</th></tr>` +
+    u.keys.map(k => {
+      const b = k.budget, used = b.monthly_budget_usd > 0 ? Math.min(1, b.spent_usd / b.monthly_budget_usd) : 0;
+      return `<tr><td>${esc(k.team)}</td><td class="mono">${esc(k.key)}</td><td class="num">${num(k.requests)}</td>
+        <td class="num">${num(k.rejected)}</td><td class="num">${num(k.prompt_tokens)} / ${num(k.completion_tokens)}</td>
+        <td class="num">${usd(k.cost_usd)}</td>
+        <td title="${usd(b.spent_usd)} of ${usd(b.monthly_budget_usd)}"><div class="bar"><div style="width:${(used * 100).toFixed(1)}%;${b.exhausted ? 'background:var(--bad)' : ''}"></div></div></td></tr>`;
+    }).join('');
+}
+
+function renderCache(c) {
+  $('cache').innerHTML = `<tr><th>team</th><th>cache</th><th class="num">hits</th><th class="num">misses</th>
+    <th class="num">hit rate</th><th class="num">entries</th><th class="num">saved</th></tr>` +
+    c.keys.map(k => `<tr><td>${esc(k.team)}</td><td>${k.cache_enabled ? 'on (≥ ' + k.cache_threshold + ')' : '<span class="chip">off</span>'}</td>
+      <td class="num">${num(k.hits)}</td><td class="num">${num(k.misses)}</td><td class="num">${pct(k.hit_rate)}</td>
+      <td class="num">${num(k.entries)}</td><td class="num">${usd(k.saved_usd)}</td></tr>`).join('');
+}
+
+function renderLogs(rows) {
+  $('logs').innerHTML = `<tr><th>time</th><th>team</th><th>model</th><th>served by</th><th>status</th><th>cache</th>
+    <th>fallback</th><th class="num">tokens</th><th class="num">cost</th><th class="num">latency</th><th>why</th></tr>` +
+    rows.map(r => {
+      const note = r.cache === 'disabled' ? '' : (r.cache_note || '');
+      const why = r.route_reason ? 'route: ' + r.route_reason : (r.error_message || note);
+      const tries = Array.isArray(r.attempts) && r.attempts.length > 1
+        ? ' · tries: ' + r.attempts.map(a => `${a.provider} ${a.outcome}`).join(' → ') : '';
+      return `<tr><td class="mono">${new Date(r.created_at).toLocaleTimeString()}</td><td>${esc(r.team || '–')}</td>
+        <td>${esc(r.requested_model || '–')}${r.resolved_alias && r.resolved_alias !== r.requested_model ? ' → ' + esc(r.resolved_alias) : ''}${r.stream ? ' <span class="chip">stream</span>' : ''}</td>
+        <td class="mono">${esc(r.resolved_provider ? r.resolved_provider + '/' + r.resolved_model : r.cache === 'hit' ? 'cache' : '–')}</td>
+        <td><span class="chip ${statusClass(r.status)}">${esc(r.status)}</span></td>
+        <td>${esc(r.cache)}${r.cache_similarity != null ? ' ' + Number(r.cache_similarity).toFixed(3) : ''}</td>
+        <td>${r.fallback ? '<span class="chip warn">yes</span>' : ''}</td>
+        <td class="num">${num(r.prompt_tokens)}/${num(r.completion_tokens)}</td><td class="num">${usd(r.cost_usd)}</td>
+        <td class="num">${ms(r.latency_ms)}</td><td class="reason">${esc(why + tries)}</td></tr>`;
+    }).join('');
+}
+
+async function refresh() {
+  try {
+    const status = $('filter').value;
+    const [overview, health, usage, cache, logs] = await Promise.all([
+      api('/admin/overview'), api('/admin/providers/health'), api('/admin/usage'),
+      api('/admin/cache/stats'), api('/admin/logs?limit=40' + (status ? '&status=' + status : ''))]);
+    renderKpis(overview); renderProviders(health); renderUsage(usage); renderCache(cache); renderLogs(logs);
+    $('error').style.display = 'none';
+    $('updated').textContent = 'updated ' + new Date().toLocaleTimeString();
+  } catch (e) {
+    $('error').textContent = e.message; $('error').style.display = 'block';
+  }
+}
+setInterval(() => { if ($('auto').checked && $('token').value) refresh(); }, 3000);
+if ($('token').value) refresh();
+</script>
+</body>
+</html>

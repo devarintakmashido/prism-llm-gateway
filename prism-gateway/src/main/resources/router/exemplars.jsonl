@@ -1,0 +1,80 @@
+{"prompt": "What year did the Berlin Wall fall?", "difficulty": "simple", "task": "lookup"}
+{"prompt": "Who wrote Pride and Prejudice?", "difficulty": "simple", "task": "lookup"}
+{"prompt": "What is the boiling point of water at sea level in Celsius?", "difficulty": "simple", "task": "lookup"}
+{"prompt": "How many continents are there?", "difficulty": "simple", "task": "lookup"}
+{"prompt": "Translate \"thank you very much\" into French.", "difficulty": "simple", "task": "translation"}
+{"prompt": "How do you say \"where is the train station\" in German?", "difficulty": "simple", "task": "translation"}
+{"prompt": "Convert 5 miles to kilometers.", "difficulty": "simple", "task": "conversion"}
+{"prompt": "How many ounces are in a pound?", "difficulty": "simple", "task": "conversion"}
+{"prompt": "What does the acronym REST stand for?", "difficulty": "simple", "task": "definition"}
+{"prompt": "What does the Linux command ls -la show?", "difficulty": "simple", "task": "definition"}
+{"prompt": "Define idempotency in one sentence.", "difficulty": "simple", "task": "definition"}
+{"prompt": "What is the plural of \"cactus\"?", "difficulty": "simple", "task": "lookup"}
+{"prompt": "Fix the spelling in this sentence: \"I recieved the pakage yesterday.\"", "difficulty": "simple", "task": "rewrite"}
+{"prompt": "Rewrite this sentence in the passive voice: \"The team shipped the release on Friday.\"", "difficulty": "simple", "task": "rewrite"}
+{"prompt": "Make this message sound more friendly: \"Your ticket is closed. Do not reply.\"", "difficulty": "simple", "task": "rewrite"}
+{"prompt": "Summarize this paragraph in one sentence: \"Our quarterly revenue grew 12% driven by new enterprise customers, while churn stayed flat and support costs dropped slightly.\"", "difficulty": "simple", "task": "summarize"}
+{"prompt": "Extract all the dates mentioned in this text: \"The kickoff is on March 3, the review on March 17 and the launch on April 2.\"", "difficulty": "simple", "task": "extraction"}
+{"prompt": "From this JSON, what is the value of the \"status\" field? {\"id\": 42, \"status\": \"shipped\", \"carrier\": \"UPS\"}", "difficulty": "simple", "task": "extraction"}
+{"prompt": "Here is a shopping list: eggs, milk, bread, apples, rice, coffee, butter. How many items are on it?", "difficulty": "simple", "task": "lookup"}
+{"prompt": "Given this CSV header \"id,name,email,created_at\", which column holds the email address?", "difficulty": "simple", "task": "lookup"}
+{"prompt": "Is 144 a perfect square?", "difficulty": "simple", "task": "arithmetic"}
+{"prompt": "What is 15% of 240?", "difficulty": "simple", "task": "arithmetic"}
+{"prompt": "Sort these words alphabetically: pear, apple, mango, banana.", "difficulty": "simple", "task": "formatting"}
+{"prompt": "Capitalize the first letter of every word in \"the quick brown fox\".", "difficulty": "simple", "task": "formatting"}
+{"prompt": "Rename the variable tmp to retryCount in this line: int tmp = 0;", "difficulty": "simple", "task": "simple-edit"}
+{"prompt": "Add a comment above this line explaining what it does: timeout = 30", "difficulty": "simple", "task": "simple-edit"}
+{"prompt": "Write a haiku about autumn leaves.", "difficulty": "simple", "task": "short-write"}
+{"prompt": "Suggest a title for a blog post about learning to bake bread.", "difficulty": "simple", "task": "short-write"}
+{"prompt": "Write a subject line for an email announcing the office is closed on Monday.", "difficulty": "simple", "task": "short-write"}
+{"prompt": "Is this review positive or negative? \"The battery died after two days and support never answered.\"", "difficulty": "simple", "task": "classification"}
+{"prompt": "Classify this support ticket as billing, technical or account: \"I was charged twice this month.\"", "difficulty": "simple", "task": "classification"}
+{"prompt": "What time zone is Tokyo in?", "difficulty": "simple", "task": "lookup"}
+{"prompt": "List the days of the week in order.", "difficulty": "simple", "task": "lookup"}
+{"prompt": "What is the chemical symbol for gold?", "difficulty": "simple", "task": "lookup"}
+{"prompt": "Give me a synonym for \"happy\".", "difficulty": "simple", "task": "lookup"}
+{"prompt": "Turn this list into a comma-separated string: red, green, blue", "difficulty": "simple", "task": "formatting"}
+{"prompt": "Here are the meeting notes: \"Anna will send the budget by Tuesday. Raj owns the vendor call. Mei books the room.\" Who owns the vendor call?", "difficulty": "simple", "task": "lookup"}
+{"prompt": "What is the default port for PostgreSQL?", "difficulty": "simple", "task": "lookup"}
+{"prompt": "Change the date 2026-09-29 to the format DD/MM/YYYY.", "difficulty": "simple", "task": "formatting"}
+{"prompt": "Write a one-line docstring for a function that returns the sum of a list.", "difficulty": "simple", "task": "short-write"}
+{"prompt": "Prove that there are infinitely many prime numbers.", "difficulty": "complex", "task": "proof"}
+{"prompt": "Show that the sum of the first n odd numbers is n squared.", "difficulty": "complex", "task": "proof"}
+{"prompt": "Derive the time complexity of binary search and explain each step.", "difficulty": "complex", "task": "algorithms"}
+{"prompt": "Estimate how many litres of coffee are drunk in London each day, and explain your assumptions.", "difficulty": "complex", "task": "estimation"}
+{"prompt": "Roughly how many golf balls would fit inside a school bus? Walk me through the reasoning.", "difficulty": "complex", "task": "estimation"}
+{"prompt": "Design a URL shortener that handles 100 million new links per day. Cover storage, caching and ID generation.", "difficulty": "complex", "task": "design"}
+{"prompt": "Design the data model for a hotel booking system that supports overbooking and cancellations, and justify the key choices.", "difficulty": "complex", "task": "design"}
+{"prompt": "Architect a real-time notification system for a mobile app with ten million users.", "difficulty": "complex", "task": "design"}
+{"prompt": "Compare PostgreSQL and MongoDB for a product catalogue with frequent schema changes, and recommend one.", "difficulty": "complex", "task": "comparison"}
+{"prompt": "What are the trade-offs between a monorepo and many repositories for a 200-engineer company?", "difficulty": "complex", "task": "trade-offs"}
+{"prompt": "Should a startup use Kubernetes from day one? Argue both sides and give a recommendation.", "difficulty": "complex", "task": "trade-offs"}
+{"prompt": "Plan the rollout of a new payments provider with no downtime, including how to roll back safely.", "difficulty": "complex", "task": "planning"}
+{"prompt": "Outline a strategy to migrate a 5 TB MySQL database to PostgreSQL while keeping the app online.", "difficulty": "complex", "task": "planning"}
+{"prompt": "Why does increasing the thread pool size sometimes make a Java service slower?", "difficulty": "complex", "task": "causal"}
+{"prompt": "Why might a Kafka consumer group keep rebalancing, and how would you stop it?", "difficulty": "complex", "task": "causal"}
+{"prompt": "What causes cache stampedes, and what are three ways to prevent them?", "difficulty": "complex", "task": "causal"}
+{"prompt": "Our checkout service started timing out every day at 9am after a config change. How would you debug this?", "difficulty": "complex", "task": "debugging"}
+{"prompt": "A Node.js service's memory grows until it crashes every few hours. Walk me through diagnosing the leak.", "difficulty": "complex", "task": "debugging"}
+{"prompt": "Tests pass locally but fail intermittently in CI. List the likely causes and how you would confirm each one.", "difficulty": "complex", "task": "debugging"}
+{"prompt": "Find the race condition in a bank transfer function that reads both balances and then writes both, and propose a fix.", "difficulty": "complex", "task": "debugging"}
+{"prompt": "Implement an LRU cache with O(1) get and put, and explain the data structures you chose.", "difficulty": "complex", "task": "algorithms"}
+{"prompt": "Write an algorithm to detect a cycle in a directed graph and analyse its complexity.", "difficulty": "complex", "task": "algorithms"}
+{"prompt": "Solve the 0/1 knapsack problem with dynamic programming and explain why the recurrence is correct.", "difficulty": "complex", "task": "algorithms"}
+{"prompt": "Explain how Raft handles leader election when the network partitions into two halves.", "difficulty": "complex", "task": "distributed"}
+{"prompt": "What anomalies can happen under snapshot isolation that cannot happen under serializable isolation? Give an example.", "difficulty": "complex", "task": "distributed"}
+{"prompt": "How does a vector clock detect concurrent updates, and when is it not enough?", "difficulty": "complex", "task": "distributed"}
+{"prompt": "Review this approach: we store user sessions in local memory on each API server behind a round-robin load balancer. What breaks and how would you fix it?", "difficulty": "complex", "task": "review"}
+{"prompt": "Evaluate the security risks of letting users upload SVG files, and recommend mitigations.", "difficulty": "complex", "task": "review"}
+{"prompt": "Critique this plan: we will cache every database query for 24 hours to cut costs.", "difficulty": "complex", "task": "review"}
+{"prompt": "Analyse the implications of switching a public API used by thousands of clients from REST to GraphQL.", "difficulty": "complex", "task": "analysis"}
+{"prompt": "Explain why the CAP theorem does not force you to give up consistency when there is no partition.", "difficulty": "complex", "task": "distributed"}
+{"prompt": "An A/B test shows a 2% lift with p = 0.04, but the team peeked at the results every day. Is the result trustworthy? Explain.", "difficulty": "complex", "task": "analysis"}
+{"prompt": "Prove that a tree with n nodes has exactly n - 1 edges.", "difficulty": "complex", "task": "proof"}
+{"prompt": "Can a deadlock happen with only one lock? Explain with an example.", "difficulty": "complex", "task": "causal"}
+{"prompt": "Design an idempotent retry strategy for a payment API that calls a flaky bank endpoint.", "difficulty": "complex", "task": "design"}
+{"prompt": "How would you shard a multi-tenant database where one tenant is 100 times larger than all the others?", "difficulty": "complex", "task": "design"}
+{"prompt": "Compare optimistic and pessimistic locking for an inventory system during flash sales, with justification.", "difficulty": "complex", "task": "comparison"}
+{"prompt": "Explain step by step how TLS 1.3 establishes a secure connection and why it is faster than TLS 1.2.", "difficulty": "complex", "task": "reasoning"}
+{"prompt": "Refactor a 2,000-line god class into smaller components. Which seams would you look for first, and why?", "difficulty": "complex", "task": "review"}
+{"prompt": "Why can retries make an outage worse, and how do backoff and circuit breakers help?", "difficulty": "complex", "task": "causal"}

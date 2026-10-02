@@ -1,0 +1,8 @@
+**/target
+.idea
+.git
+.env
+docs
+*.iml
+**/.DS_Store
+private-notes

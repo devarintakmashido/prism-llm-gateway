@@ -1,0 +1,30 @@
+{"id": "heldout_001", "expected_tier": "fast", "note": "cursor-style trivial edit across files (trap: sounds big)", "prompt": "Rename the function getUsr to getUser in all five files that import it."}
+{"id": "heldout_002", "expected_tier": "fast", "note": "single-line edit", "prompt": "Change the log level on line 42 of server.js from debug to info."}
+{"id": "heldout_003", "expected_tier": "fast", "note": "fact lookup", "prompt": "What is the capital of Australia?"}
+{"id": "heldout_004", "expected_tier": "fast", "note": "translation", "prompt": "Translate 'see you tomorrow' into Italian."}
+{"id": "heldout_005", "expected_tier": "fast", "note": "unit conversion", "prompt": "Convert 180 centimeters to feet and inches."}
+{"id": "heldout_006", "expected_tier": "fast", "note": "trivial file edit", "prompt": "Add a newline at the end of README.md."}
+{"id": "heldout_007", "expected_tier": "fast", "note": "trap: long input, trivial lookup", "prompt": "Here is a list of employee IDs and their departments: E101 Sales, E102 Sales, E103 Finance, E104 Legal, E105 Sales, E106 Ops, E107 Finance, E108 Ops, E109 Legal, E110 Sales, E111 HR, E112 HR, E113 Ops, E114 Sales, E115 Finance, E116 Legal, E117 Ops, E118 HR, E119 Sales, E120 Finance. Which department is E111 in?"}
+{"id": "heldout_008", "expected_tier": "fast", "note": "trap: long input, trivial extraction", "prompt": "Below is a stack trace. java.lang.NullPointerException at com.shop.Cart.total(Cart.java:88) at com.shop.Checkout.run(Checkout.java:41) at com.shop.Main.main(Main.java:12). Which file and line threw the exception?"}
+{"id": "heldout_009", "expected_tier": "fast", "note": "tone rewrite", "prompt": "Make this Slack message more professional: 'yo the build is broken again, someone fix it pls'"}
+{"id": "heldout_010", "expected_tier": "fast", "note": "definition", "prompt": "What does the SQL keyword DISTINCT do?"}
+{"id": "heldout_011", "expected_tier": "fast", "note": "arithmetic check", "prompt": "Is 97 a prime number?"}
+{"id": "heldout_012", "expected_tier": "fast", "note": "short writing", "prompt": "Write a commit message for bumping the lodash version."}
+{"id": "heldout_013", "expected_tier": "fast", "note": "formatting", "prompt": "Format this date as ISO 8601: March 5th 2026, 3pm UTC."}
+{"id": "heldout_014", "expected_tier": "fast", "note": "one-sentence summary", "prompt": "Summarize in one sentence: 'The meeting moved to Thursday because the client is travelling on Wednesday.'"}
+{"id": "heldout_015", "expected_tier": "fast", "note": "synonyms", "prompt": "Give me three synonyms for 'fast'."}
+{"id": "heldout_016", "expected_tier": "smart", "note": "trap: short proof", "prompt": "Prove that every tree with at least two vertices has at least two leaves."}
+{"id": "heldout_017", "expected_tier": "smart", "note": "trap: short causal reasoning", "prompt": "Why might adding an index make some writes slower and some reads faster at the same time?"}
+{"id": "heldout_018", "expected_tier": "smart", "note": "estimation with assumptions", "prompt": "Estimate the monthly S3 cost of storing 10 million 2 MB images, with your assumptions."}
+{"id": "heldout_019", "expected_tier": "smart", "note": "distributed design", "prompt": "Design an API rate limiter that works across three regions with at most 1% over-admission."}
+{"id": "heldout_020", "expected_tier": "smart", "note": "production debugging", "prompt": "Our Postgres primary's CPU hits 100% every night at 2am. What are the likely causes, and how would you confirm each?"}
+{"id": "heldout_021", "expected_tier": "smart", "note": "cursor-style design review", "prompt": "Review this design: every microservice writes directly to the shared orders table. What problems will we hit as we scale?"}
+{"id": "heldout_022", "expected_tier": "smart", "note": "comparison with recommendation", "prompt": "Compare gRPC and REST for internal service-to-service calls and recommend one for a latency-sensitive system."}
+{"id": "heldout_023", "expected_tier": "smart", "note": "distributed systems depth", "prompt": "Explain how two-phase commit can block forever, and what three-phase commit or sagas change."}
+{"id": "heldout_024", "expected_tier": "smart", "note": "hard algorithm + proof", "prompt": "Write a function that finds the median of two sorted arrays in O(log n) time and prove it is correct."}
+{"id": "heldout_025", "expected_tier": "smart", "note": "structured migration plan", "prompt": "Plan a migration from session cookies to JWTs for 5 million active users without logging anyone out."}
+{"id": "heldout_026", "expected_tier": "smart", "note": "cursor-style complex refactor", "prompt": "Refactor this callback-heavy module to async/await and explain what error-handling behaviour changes."}
+{"id": "heldout_027", "expected_tier": "smart", "note": "trap: short quantitative reasoning", "prompt": "Is a system with a 99.9% SLA per dependency and 20 serial dependencies likely to hit 99.9% overall? Show the math."}
+{"id": "heldout_028", "expected_tier": "smart", "note": "trap: short but deep debugging", "prompt": "A flaky test fails 1 in 50 runs only on ARM machines. How would you track down the cause?"}
+{"id": "heldout_029", "expected_tier": "smart", "note": "consistency risk analysis", "prompt": "What are the consistency risks of caching user permissions in Redis for five minutes, and how would you mitigate them?"}
+{"id": "heldout_030", "expected_tier": "smart", "note": "bug hunt with explanation", "prompt": "Find the bug: a binary search loops forever when the target is larger than every element. Explain why and fix it."}

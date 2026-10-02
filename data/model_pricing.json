@@ -1,0 +1,27 @@
+{
+  "_comment": "Prices in USD per 1M tokens. These are the source of truth for cost accounting against the mock providers. If you add a real provider, append its models here with current prices from the provider's pricing page. openrouter-small = openai/gpt-4.1-nano and openrouter-large = openai/gpt-4.1-mini at OpenRouter's list prices (2026-10-01); they are priced here but only routable when an OpenRouter key is set (data/gateway_extras.json).",
+  "alpha-small": {
+    "input_per_1m": 0.15,
+    "output_per_1m": 0.6
+  },
+  "alpha-large": {
+    "input_per_1m": 3.0,
+    "output_per_1m": 15.0
+  },
+  "beta-small": {
+    "input_per_1m": 0.1,
+    "output_per_1m": 0.4
+  },
+  "beta-large": {
+    "input_per_1m": 2.5,
+    "output_per_1m": 10.0
+  },
+  "openrouter-small": {
+    "input_per_1m": 0.1,
+    "output_per_1m": 0.4
+  },
+  "openrouter-large": {
+    "input_per_1m": 0.4,
+    "output_per_1m": 1.6
+  }
+}

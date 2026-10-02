@@ -1,0 +1,72 @@
+server:
+  port: ${PORT:8080}
+  shutdown: graceful
+
+spring:
+  application:
+    name: prism-gateway
+  threads:
+    virtual:
+      enabled: true        # every request (and every stream) runs on a virtual thread
+  datasource:
+    url: ${PRISM_DB_URL:jdbc:postgresql://localhost:5432/prism}
+    username: ${PRISM_DB_USER:prism}
+    password: ${PRISM_DB_PASSWORD:prism}
+    hikari:
+      maximum-pool-size: 20
+  data:
+    redis:
+      host: ${PRISM_REDIS_HOST:localhost}
+      port: ${PRISM_REDIS_PORT:6379}
+      timeout: 500ms
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  metrics:
+    tags:
+      service: prism-gateway
+
+prism:
+  instance-id: ${PRISM_INSTANCE_ID:${HOSTNAME:gateway-local}}
+  admin-token: ${PRISM_ADMIN_TOKEN:prism-admin-dev-token}
+  data-dir: ${PRISM_DATA_DIR:data}
+  gateway-config-file: gateway_config.sample.json
+  upstream:
+    connect-timeout: 1s
+    first-byte-timeout: 2s       # a provider slower than this to start answering is treated as down
+    stream-idle-timeout: 10s     # max silence between two streamed chunks
+    total-timeout: 30s           # whole non-streaming request, retries and failover included
+    providers:
+      alpha:
+        base-url: ${PRISM_ALPHA_BASE_URL:}
+        api-key: ${PRISM_ALPHA_API_KEY:}
+      beta:
+        base-url: ${PRISM_BETA_BASE_URL:}
+        api-key: ${PRISM_BETA_API_KEY:}
+      openrouter:               # optional real provider; enabled only when a key is set (data/gateway_extras.json)
+        base-url: ${PRISM_OPENROUTER_BASE_URL:}
+        api-key: ${PRISM_OPENROUTER_API_KEY:}
+  cache:
+    ttl: 24h
+    max-semantic-words: 150      # longer prompts are exact-match only
+    candidates: 5
+    max-entries-per-tenant: 5000
+  router:
+    knn-weight: 1.5
+    knn-k: 5
+    uncertain-margin: 0.5
+    uncertain-tier: complex      # when unsure, protect answer quality
+  health:
+    probe-enabled: true
+    probe-interval: 1s           # a restored provider gets traffic back within ~1 s; a dead one is UNHEALTHY in ~3 s
+    min-samples: 5
+    unhealthy-after-failures: 3
+    publish-interval: 2s

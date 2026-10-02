@@ -1,0 +1,20 @@
+{"id": "heldout2_001", "expected_tier": "fast", "note": "lookup", "prompt": "Who is the current CEO listed in this org chart: CEO - Maria Lopez, CTO - Ken Ito, CFO - Dana Wu?"}
+{"id": "heldout2_002", "expected_tier": "fast", "note": "conversion", "prompt": "How many seconds are in three hours?"}
+{"id": "heldout2_003", "expected_tier": "fast", "note": "translation", "prompt": "Translate 'the invoice is attached' into Portuguese."}
+{"id": "heldout2_004", "expected_tier": "fast", "note": "extraction", "prompt": "Pull out the order number from: 'Hi, my order #88213 arrived damaged, can you help?'"}
+{"id": "heldout2_005", "expected_tier": "fast", "note": "trap: long input, trivial count", "prompt": "Here are this week's deploys: api v1.4.2 Monday, web v3.0.1 Monday, api v1.4.3 Tuesday, worker v2.2.0 Wednesday, web v3.0.2 Thursday, api v1.4.4 Friday, worker v2.2.1 Friday. How many deploys did the api service have?"}
+{"id": "heldout2_006", "expected_tier": "fast", "note": "cursor-style trivial edit", "prompt": "Replace every tab with four spaces in config.yaml."}
+{"id": "heldout2_007", "expected_tier": "fast", "note": "cursor-style trivial edit", "prompt": "Add the missing semicolon at the end of line 17 in utils.js."}
+{"id": "heldout2_008", "expected_tier": "fast", "note": "rewrite", "prompt": "Rephrase this to sound less harsh: 'Your code is wrong, redo it.'"}
+{"id": "heldout2_009", "expected_tier": "fast", "note": "definition", "prompt": "What is a foreign key?"}
+{"id": "heldout2_010", "expected_tier": "fast", "note": "short write", "prompt": "Write a friendly one-sentence out-of-office reply."}
+{"id": "heldout2_011", "expected_tier": "smart", "note": "trap: short proof", "prompt": "Show that the product of two odd numbers is always odd."}
+{"id": "heldout2_012", "expected_tier": "smart", "note": "trap: short but deep", "prompt": "Why is exactly-once delivery so hard to guarantee in a message queue?"}
+{"id": "heldout2_013", "expected_tier": "smart", "note": "design", "prompt": "Design the backend for a food-delivery app's live order tracking, covering data flow, storage and failure handling."}
+{"id": "heldout2_014", "expected_tier": "smart", "note": "debugging", "prompt": "After we enabled HTTP/2, some clients see random 30-second stalls. What could cause this and how would you narrow it down?"}
+{"id": "heldout2_015", "expected_tier": "smart", "note": "planning", "prompt": "Plan how to split a shared PostgreSQL database between two teams' services without downtime, including rollback steps."}
+{"id": "heldout2_016", "expected_tier": "smart", "note": "comparison", "prompt": "Compare Redis Streams and Kafka for an event pipeline with 50k events per second, and recommend one with justification."}
+{"id": "heldout2_017", "expected_tier": "smart", "note": "algorithms", "prompt": "Write an algorithm that merges k sorted lists efficiently and analyse its time complexity."}
+{"id": "heldout2_018", "expected_tier": "smart", "note": "estimation", "prompt": "Estimate how much bandwidth a video-call service needs at peak for one million concurrent users. Show your reasoning."}
+{"id": "heldout2_019", "expected_tier": "smart", "note": "cursor-style review", "prompt": "Review this approach: we retry every failed payment request five times immediately with no idempotency key. What can go wrong?"}
+{"id": "heldout2_020", "expected_tier": "smart", "note": "distributed", "prompt": "Explain how a network partition can cause split-brain in a primary-replica database and how fencing prevents it."}

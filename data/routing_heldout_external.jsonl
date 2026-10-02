@@ -1,0 +1,32 @@
+{"id": "j01", "expected_tier": "fast", "note": "fact", "prompt": "What's the boiling point of nitrogen?"}
+{"id": "j02", "expected_tier": "fast", "note": "synonym", "prompt": "Give me a synonym for 'happy'."}
+{"id": "j03", "expected_tier": "fast", "note": "sort", "prompt": "Sort these numbers ascending: 5, 2, 9, 1."}
+{"id": "j04", "expected_tier": "fast", "note": "arithmetic", "prompt": "How many minutes are in a day?"}
+{"id": "j05", "expected_tier": "fast", "note": "grammar rewrite", "prompt": "Turn this sentence into passive voice: The cat chased the mouse."}
+{"id": "j06", "expected_tier": "fast", "note": "one-line summary", "prompt": "Summarize in one line: The meeting is moved from Tuesday to Thursday at 4pm because the client is traveling."}
+{"id": "j07", "expected_tier": "fast", "note": "fact", "prompt": "Which HTTP method is used to delete a resource in a REST API?"}
+{"id": "j08", "expected_tier": "fast", "note": "trivial transform", "prompt": "Spell the word 'necessary' backwards."}
+{"id": "j09", "expected_tier": "fast", "note": "typo fix", "prompt": "Fix the typos: 'Teh qucik brown fox jumsp over the lazy dog.'"}
+{"id": "j10", "expected_tier": "fast", "note": "short writing", "prompt": "Write a friendly out-of-office reply saying I'm back on Monday."}
+{"id": "j11", "expected_tier": "fast", "note": "trap: long input, trivial lookup", "prompt": "Here is our service config: server.port=8443, server.host=0.0.0.0, db.host=pg-primary.internal, db.port=6432, db.pool.max=40, db.pool.min=5, cache.host=redis.internal, cache.port=6380, cache.ttl=3600, log.level=INFO, log.format=json, feature.newCheckout=true, feature.darkMode=false, auth.issuer=https://auth.example.com, auth.audience=api. What port does the database use?"}
+{"id": "j12", "expected_tier": "fast", "note": "trap: long input, trivial lookup", "prompt": "Meeting notes from Monday: Anita will own the vendor shortlist and send it by Friday. Rahul is drafting the Q4 hiring plan with input from finance. Mei-Lin takes the budget review and will present numbers next week. Omar is following up with legal on the data processing agreement. Priyanka will book the offsite venue. Who is responsible for the budget review?"}
+{"id": "j13", "expected_tier": "fast", "note": "trap: keyword 'complexity' but a one-fact answer", "prompt": "What is the average time complexity of looking up a key in a hash map?"}
+{"id": "j14", "expected_tier": "fast", "note": "definition", "prompt": "What does 'idempotent' mean?"}
+{"id": "j15", "expected_tier": "fast", "note": "list fact", "prompt": "List the planets in order from the sun."}
+{"id": "j16", "expected_tier": "fast", "note": "chit-chat", "prompt": "Thanks, that worked!"}
+{"id": "j17", "expected_tier": "smart", "note": "distributed debugging", "prompt": "Our Kafka consumers keep rebalancing every few minutes under load. What could cause this and how would you fix it?"}
+{"id": "j18", "expected_tier": "smart", "note": "networking depth", "prompt": "Can a TCP connection end up half-open? Explain how it happens and how applications detect it."}
+{"id": "j19", "expected_tier": "smart", "note": "math", "prompt": "Find all integer solutions to x^2 - y^2 = 2024."}
+{"id": "j20", "expected_tier": "smart", "note": "tricky SQL + explanation", "prompt": "Write a SQL query that returns the second-highest salary per department, handling ties correctly, and explain why your approach works."}
+{"id": "j21", "expected_tier": "smart", "note": "trade-off argument", "prompt": "Should we use optimistic or pessimistic locking for an inventory system during flash sales? Argue both sides."}
+{"id": "j22", "expected_tier": "smart", "note": "big-data algorithm", "prompt": "Given a 2 TB log file and a machine with 8 GB of RAM, how would you find the 100 most frequent IP addresses?"}
+{"id": "j23", "expected_tier": "smart", "note": "performance debugging", "prompt": "My React app re-renders a list of 10k rows on every keystroke. Walk me through how you'd make it fast."}
+{"id": "j24", "expected_tier": "smart", "note": "OS internals", "prompt": "What happens, step by step, inside the kernel when a process calls fork()?"}
+{"id": "j25", "expected_tier": "smart", "note": "algorithm implementation", "prompt": "Implement an LRU cache with O(1) get and put."}
+{"id": "j26", "expected_tier": "smart", "note": "scaling plan", "prompt": "How would you shard a users table that grows 5x a year without downtime?"}
+{"id": "j27", "expected_tier": "smart", "note": "concurrency reasoning", "prompt": "Why doesn't Python's GIL prevent all race conditions?"}
+{"id": "j28", "expected_tier": "smart", "note": "open theory question", "prompt": "Is P equal to NP? Summarize the strongest arguments on each side."}
+{"id": "j29", "expected_tier": "smart", "note": "expert code", "prompt": "Write a lock-free queue in C++ and explain the memory ordering you chose."}
+{"id": "j30", "expected_tier": "smart", "note": "trap: long code, hard question", "prompt": "Here is our transfer code: def transfer(a, b, amount): with a.lock: with b.lock: a.balance -= amount; b.balance += amount. Two threads run transfer(x, y, 10) and transfer(y, x, 5) at the same time in our payment service, which handles thousands of requests per second across many worker threads and has been in production for two years without changes. Why does this occasionally hang?"}
+{"id": "j31", "expected_tier": "smart", "note": "security reasoning", "prompt": "Is it safe to store JWTs in localStorage? Explain the attack surface compared to cookies."}
+{"id": "j32", "expected_tier": "smart", "note": "short but hard estimation", "prompt": "Roughly how much storage does YouTube need per day for new uploads?"}
